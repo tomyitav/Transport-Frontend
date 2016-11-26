@@ -4,7 +4,8 @@
 angular.module('myContacts', [
   'ngRoute',
     'firebase',
-    'myContacts.contacts'
+    'myContacts.contacts',
+    'myContacts.trains'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
