@@ -1,1 +1,27 @@
-<p>This is the partial for view 1.</p>
+<div class="row" ng-controller="trainCtrl">
+    <div class="large-10 columns">
+        <h2>Your Trains ({{trains.length}})</h2>
+        <table>
+            <thead>
+            <tr>
+                <th width="200px">Id</th>
+                <th width="230px">Name</th>
+                <!--<th width="25%">email</th>-->
+                <th width="25%">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="train in trains">
+                <td><a href="#">{{train.id}}</a></td>
+                <td>{{train.name}}</td>
+                <td><a class="button tiny" ng-click="fetchTrainsList()">Edit</a>
+                    <a class="button tiny alert" ng-click="removeCar(car.name)">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="small-12 large-2 columns">
+            <a class="button large" ng-click="showAddForm()" ng-hide="addFormShow">+</a>
+            <a class="button large" ng-click="hideAddForm()" ng-show="addFormShow">-</a>
+        </div>
+    </div>
+</div>

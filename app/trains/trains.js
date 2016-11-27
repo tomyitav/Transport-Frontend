@@ -5,10 +5,17 @@ angular.module('myContacts.trains', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/trains', {
     templateUrl: 'trains/trains.html',
-    controller: 'View1Ctrl'
+    controller: 'trainCtrl'
   });
 }])
 
-.controller('View1Ctrl', [function() {
+.controller('trainCtrl', ['$scope', '$http',function($scope, $http) {
+  $scope.fetchTrainsList = function() {
+    $http.get("http://localhost:8080/trains/trainslist.json").success(function(trainList){
+      console.log(trainList)
+      $scope.trains = trainList;
+    });
+  };
 
+  $scope.fetchTrainsList();
 }]);
