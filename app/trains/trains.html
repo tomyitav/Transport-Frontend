@@ -19,9 +19,21 @@
             </tr>
             </tbody>
         </table>
-        <div class="small-12 large-2 columns">
-            <a class="btn btn-primary" ng-click="showAddForm()" ng-hide="addFormShow">+</a>
-            <a class="button large" ng-click="hideAddForm()" ng-show="addFormShow">-</a>
-        </div>
+        <form ng-show="addFormShow">
+            <div class="form-group">
+                <h3>Add train</h3>
+                <label>Name:
+                    <input type="text" ng-model="train.name" placeholder="train name" class="form-control"/>
+                </label>
+
+                <div class="col-md-12">
+                    <input type="submit" value="Add" class="btn btn-default" ng-disabled="!train.name" ng-click="addNewCar(car)"/>
+                </div>
+            </div>
+        </form>
+    <div class="small-12 large-2 columns">
+        <a class="btn btn-primary" ng-click="showAddForm()" ng-hide="addFormShow">+</a>
+        <a class="btn btn-primary" ng-click="hideAddForm()" ng-show="addFormShow">-</a>
+    </div>
     </div>
 </div>
