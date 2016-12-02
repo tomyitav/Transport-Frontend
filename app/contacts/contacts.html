@@ -1,17 +1,5 @@
 <div class="row" ng-controller="ContactsCtrl">
-<form ng-show="addFormShow">
-    <h3>Add car</h3>
-    <div class="row">
-        <div class="large-6 columns">
-            <label>Name:
-                <input type="text" ng-model="car.name" placeholder="car name" />
-            </label>
-        </div>
-        <div class="large-6 columns">
-            <input type="submit" value="Add" class="button" ng-disabled="!car.name" ng-click="addNewCar(car)"/>
-        </div>
-    </div>
-</form>
+
 <div class="large-10 columns">
     <h2>Your cars ({{cars.length}})</h2>
     <table class="table table-hover">
@@ -32,9 +20,21 @@
             </tr>
         </tbody>
     </table>
+    <form ng-show="addFormShow">
+        <div class="form-group">
+            <h3>Add car</h3>
+            <label>Name:
+                <input type="text" ng-model="car.name" placeholder="car name" class="form-control"/>
+            </label>
+
+            <div class="col-md-12">
+                <input type="submit" value="Add" class="btn btn-default" ng-disabled="!car.name" ng-click="addNewCar(car)"/>
+            </div>
+        </div>
+    </form>
     <div class="small-12 large-2 columns">
         <a class="btn btn-primary" ng-click="showAddForm()" ng-hide="addFormShow">+</a>
-        <a class="button large" ng-click="hideAddForm()" ng-show="addFormShow">-</a>
+        <a class="btn btn-primary" ng-click="hideAddForm()" ng-show="addFormShow">-</a>
     </div>
 </div>
 </div>
