@@ -14,7 +14,7 @@
 </form>
 <div class="large-10 columns">
     <h2>Your cars ({{cars.length}})</h2>
-    <table>
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th width="200px">Id</th>
@@ -27,13 +27,13 @@
             <tr ng-repeat="car in cars">
                 <td><a href="#">{{car.id}}</a></td>
                 <td>{{car.name}}</td>
-                <td><a class="button tiny" ng-click="fetchCarsList()">Edit</a>
-                    <a class="button tiny alert" ng-click="removeCar(car.name)">Delete</a></td>
+                <td><a class="btn btn-success" ng-click="fetchCarsList()">Edit</a>
+                    <a class="btn btn-danger" ng-click="removeCar(car.name)">Delete</a></td>
             </tr>
         </tbody>
     </table>
     <div class="small-12 large-2 columns">
-        <a class="button large" ng-click="showAddForm()" ng-hide="addFormShow">+</a>
+        <a class="btn btn-primary" ng-click="showAddForm()" ng-hide="addFormShow">+</a>
         <a class="button large" ng-click="hideAddForm()" ng-show="addFormShow">-</a>
     </div>
 </div>
