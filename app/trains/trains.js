@@ -27,5 +27,12 @@ angular.module('myContacts.trains', ['ngRoute'])
     $scope.train.name = '';
   };
 
+  $scope.showAddForm = function(){
+    $scope.addFormShow = true;
+  }
+  $scope.hideAddForm = function(){
+    $scope.addFormShow = false;
+  }
+
   $scope.fetchTrainsList();
 }]);
