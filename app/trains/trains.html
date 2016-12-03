@@ -1,11 +1,13 @@
 <div class="row" ng-controller="trainCtrl">
     <div class="large-10 columns">
-        <h2>Your Trains ({{trains.length}})</h2>
+        <h2>Number of Trains: {{trains.length}}</h2>
         <table class="table table-hover">
             <thead>
             <tr>
                 <th width="200px">Id</th>
                 <th width="230px">Name</th>
+                <th width="230px">Speed</th>
+                <th width="230px">Diesel</th>
                 <!--<th width="25%">email</th>-->
                 <th width="25%">Actions</th>
             </tr>
@@ -14,23 +16,34 @@
             <tr ng-repeat="train in trains">
                 <td><a href="#">{{train.id}}</a></td>
                 <td>{{train.name}}</td>
+                <td>{{train.speed}}</td>
+                <td>{{train.diesel}}</td>
                 <td><a class="btn btn-success" ng-click="fetchTrainsList()">Edit</a>
                     <a class="btn btn-danger" ng-click="removeTrain(train.id)">Delete</a></td>
             </tr>
             </tbody>
         </table>
-        <form ng-show="addFormShow">
-            <div class="form-group">
+        <div class="container">
+            <form ng-show="addFormShow" name="myForm">
                 <h3>Add train</h3>
-                <label>Name:
-                    <input type="text" ng-model="train.name" placeholder="train name" class="form-control"/>
-                </label>
-
-                <div class="col-md-12">
-                    <input type="submit" value="Add" class="btn btn-default" ng-disabled="!train.name" ng-click="addNewCar(car)"/>
+                <div class="form-group">
+                    <label>Name:
+                        <input type="text" ng-model="train.name" placeholder="train name" class="form-control"/>
+                    </label>
                 </div>
-            </div>
-        </form>
+                <div class="form-group">
+                    <label>Speed:
+                        <input type="number" ng-model="train.speed" placeholder="train speed" class="form-control" name="speed"/>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" ng-model="train.diesel">Diesel</label>
+                    <input type="submit" value="Add" class="btn btn-info" ng-disabled="!train.name || !train.speed" ng-click="addNewCar(car)"/>
+                </div>
+                <!--<div class="col-md-12">-->
+                <!--</div>-->
+            </form>
+        </div>
     <div class="small-12 large-2 columns">
         <a class="btn btn-primary" ng-click="showAddForm()" ng-hide="addFormShow">+</a>
         <a class="btn btn-primary" ng-click="hideAddForm()" ng-show="addFormShow">-</a>
