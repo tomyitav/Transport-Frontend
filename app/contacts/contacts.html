@@ -16,7 +16,8 @@
                 <td><a href="#">{{car.id}}</a></td>
                 <td>{{car.name}}</td>
                 <td><a class="btn btn-success" ng-click="fetchCarsList()">Edit</a>
-                    <a class="btn btn-danger" ng-click="removeCar(car.name)">Delete</a></td>
+                    <a class="btn btn-danger" title="Sure???" ng-click="removeCar(car.name)" data-toggle="confirmation"
+                       data-singleton="true" data-popout="true">Delete</a></td>
             </tr>
         </tbody>
     </table>

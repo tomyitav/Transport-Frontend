@@ -1,5 +1,6 @@
 'use strict';
 
+$('[data-toggle="confirmation"]').confirmation({ btnOkLabel: "Yes", btnCancelLabel: "No" });
 angular.module('myContacts.contacts', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
@@ -9,8 +10,11 @@ angular.module('myContacts.contacts', ['ngRoute'])
   });
 }])
 
-.controller('ContactsCtrl', ['$scope', '$http',function($scope, $http) {
+.controller('ContactsCtrl', ['$scope', '$http', function($scope, $http) {
+    // $('[data-toggle="confirmation"]').confirmation('show');
+
     $scope.car = {};
+    // $scope.confirmedRemove = false;
     $scope.fetchCarsList = function() {
         $http.get("http://localhost:8080/cars/carlist.json").success(function(carList){
             console.log(carList)
@@ -23,6 +27,9 @@ angular.module('myContacts.contacts', ['ngRoute'])
     }
     $scope.hideAddForm = function(){
       $scope.addFormShow = false;
+    }
+    $scope.setConfirm = function () {
+        $scope.confirmedRemove = true;
     }
 
     $scope.addNewCar = function(car) {
@@ -42,11 +49,14 @@ angular.module('myContacts.contacts', ['ngRoute'])
     };
 
     $scope.removeCar = function(name) {
-        console.log("logging before delete car...")
-        $http.delete("http://localhost:8080/cars/removeCar/" + name).success(function(res) {
-            console.log(res)
-            $scope.fetchCarsList();
-        });
+        var conf = confirm('Are you sure??');
+        if(conf == true) {
+            console.log("logging before delete car...")
+            $http.delete("http://localhost:8080/cars/removeCar/" + name).success(function (res) {
+                console.log(res)
+                $scope.fetchCarsList();
+            });
+        }
         $scope.car.name = '';
     };
 
