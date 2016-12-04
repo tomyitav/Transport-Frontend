@@ -27,9 +27,6 @@ angular.module('myContacts.contacts', ['ngRoute'])
     $scope.hideAddForm = function(){
       $scope.addFormShow = false;
     }
-    $scope.setConfirm = function () {
-        $scope.confirmedRemove = true;
-    }
 
     $scope.addNewCar = function(car) {
         console.log(car);
@@ -56,10 +53,6 @@ angular.module('myContacts.contacts', ['ngRoute'])
             });
         }});
         $scope.car.name = '';
-    };
-
-    $scope.printConfirm = function() {
-        console.log("Confirmed!!!");
     };
 
     $scope.fetchCarsList();
