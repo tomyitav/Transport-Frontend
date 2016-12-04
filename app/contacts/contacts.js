@@ -1,6 +1,5 @@
 'use strict';
 
-$('[data-toggle="confirmation"]').confirmation({ btnOkLabel: "Yes", btnCancelLabel: "No" });
 angular.module('myContacts.contacts', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
@@ -49,15 +48,18 @@ angular.module('myContacts.contacts', ['ngRoute'])
     };
 
     $scope.removeCar = function(name) {
-        var conf = confirm('Are you sure??');
-        if(conf == true) {
+        $('[data-toggle="confirmation"]').confirmation({onConfirm: function() {
             console.log("logging before delete car...")
             $http.delete("http://localhost:8080/cars/removeCar/" + name).success(function (res) {
                 console.log(res)
                 $scope.fetchCarsList();
             });
-        }
+        }});
         $scope.car.name = '';
+    };
+
+    $scope.printConfirm = function() {
+        console.log("Confirmed!!!");
     };
 
     $scope.fetchCarsList();
