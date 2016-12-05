@@ -56,6 +56,5 @@ angular.module('myContacts.contacts', ['ngRoute'])
     };
 
     $scope.fetchCarsList();
-
     $scope.predicate = 'id';
 }]);
