@@ -33,6 +33,12 @@ angular.module('myContacts.trains', ['ngRoute'])
   $scope.hideAddForm = function(){
     $scope.addFormShow = false;
   }
+  $scope.sendToSocket= function(){
+    console.log('This is before sending to socket...');
+    stompClient.send("http://localhost:8080/topic/questions", {}, 'Hi from Trains');
+  }
 
   $scope.fetchTrainsList();
+
+
 }]);
