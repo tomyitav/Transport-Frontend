@@ -26,7 +26,16 @@ angular.module('myContacts.contacts', ['ngRoute'])
     }
     $scope.hideAddForm = function(){
       $scope.addFormShow = false;
+      $scope.editFormShow = false;
     }
+
+    $scope.showEditForm = function(name){
+      $scope.editFormShow = true;
+      $scope.editedCarName = name;
+    }
+    // $scope.hideEditForm = function(){
+    //   $scope.editFormShow = false;
+    // }
 
     $scope.addNewCar = function(car) {
         console.log(car);
@@ -44,13 +53,35 @@ angular.module('myContacts.contacts', ['ngRoute'])
         $scope.addFormShow = false;
     };
 
+    $scope.editCar = function(car) {
+        console.log('Removing old car');
+        $scope.removeLogic($scope.editedCarName);
+        console.log(car);
+        $http({method  : 'PUT',
+            url     : 'http://localhost:8080/cars/updateCar',
+            data    : car, //forms user object
+            headers : {'Content-Type': 'application/json'}
+        }).success(function() {
+            $scope.fetchCarsList();
+            $scope.car.name = ''
+        }).error(function() {
+            // $scope.setError('Could not add a new car');
+            console.log("Error posting JSON")
+        });
+        $scope.editFormShow = false;
+    };
+
+    $scope.removeLogic = function(name) {
+        $http.delete("http://localhost:8080/cars/removeCar/" + name).success(function (res) {
+            console.log(res)
+            $scope.fetchCarsList();
+        });
+    }
+
     $scope.removeCar = function(name) {
         $('[data-toggle="confirmation"]').confirmation({onConfirm: function() {
             console.log("logging before delete car...")
-            $http.delete("http://localhost:8080/cars/removeCar/" + name).success(function (res) {
-                console.log(res)
-                $scope.fetchCarsList();
-            });
+            $scope.removeLogic(name);
         }});
         $scope.car.name = '';
     };
