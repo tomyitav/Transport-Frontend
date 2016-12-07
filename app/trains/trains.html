@@ -19,7 +19,9 @@
                 <td>{{train.speed}}</td>
                 <td>{{train.diesel}}</td>
                 <td><a class="btn btn-success" ng-click="fetchTrainsList()">Edit</a>
-                    <a class="btn btn-danger" ng-click="removeTrain(train.id)">Delete</a></td>
+                    <!--<a class="btn btn-danger" ng-click="removeTrain(train.id)">Delete</a></td>-->
+                    <a class="btn btn-danger" title="Sure???" ng-click="removeTrain(train.id)" data-toggle="confirmation"
+                       data-singleton="true" data-popout="true">Delete</a></td>
             </tr>
             </tbody>
         </table>
@@ -37,11 +39,9 @@
                     </label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" ng-model="train.diesel">Diesel</label>
-                    <input type="submit" value="Add" class="btn btn-info" ng-disabled="!train.name || !train.speed" ng-click="addNewCar(car)"/>
+                    <label><input type="checkbox" ng-model="train.diesel" id="dieselCheckBox">Diesel</label>
+                    <input type="submit" value="Add" class="btn btn-info" ng-disabled="!train.name || !train.speed" ng-click="addNewTrain(train)"/>
                 </div>
-                <!--<div class="col-md-12">-->
-                <!--</div>-->
             </form>
         </div>
     <div class="small-12 large-2 columns">

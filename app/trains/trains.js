@@ -11,6 +11,7 @@ angular.module('myContacts.trains', ['ngRoute'])
 
 .controller('trainCtrl', ['$scope', '$http',function($scope, $http) {
   $scope.train= {};
+  $scope.train.diesel = false;
   $scope.fetchTrainsList = function() {
     $http.get("http://localhost:8080/trains/trainslist.json").success(function(trainList){
       console.log(trainList)
@@ -19,12 +20,31 @@ angular.module('myContacts.trains', ['ngRoute'])
   };
 
   $scope.removeTrain = function(id) {
-    console.log("logging before delete train...")
-    $http.delete("http://localhost:8080/trains/removeTrain/" + id).success(function(res) {
-      console.log(res);
-      $scope.fetchTrainsList();
-    });
+    $('[data-toggle="confirmation"]').confirmation({onConfirm: function() {
+      console.log("logging before delete train...")
+      $http.delete("http://localhost:8080/trains/removeTrain/" + id).success(function (res) {
+        console.log(res);
+        $scope.fetchTrainsList();
+      });
+    }});
     $scope.train.name = '';
+  };
+
+  $scope.addNewTrain = function(train) {
+    console.log(train);
+    $http({method  : 'POST',
+      url     : 'http://localhost:8080/trains/addTrain',
+      data    : train, //forms user object
+      headers : {'Content-Type': 'application/json'}
+    }).success(function() {
+      $scope.fetchTrainsList()
+      $scope.train.name = '';
+      $scope.train.speed = '';
+      $scope.train.diesel = false;
+    }).error(function() {
+      console.log("Error posting JSON")
+    });
+    $scope.addFormShow = false;
   };
 
   $scope.showAddForm = function(){
