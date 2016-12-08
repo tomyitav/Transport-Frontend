@@ -29,9 +29,10 @@ angular.module('myContacts.contacts', ['ngRoute'])
       $scope.editFormShow = false;
     }
 
-    $scope.showEditForm = function(name){
+    $scope.showEditForm = function(car){
       $scope.editFormShow = true;
-      $scope.editedCarName = name;
+      $scope.editedCarName = car.name;
+      $scope.editedCarId = car.id;
     }
     // $scope.hideEditForm = function(){
     //   $scope.editFormShow = false;
@@ -54,8 +55,7 @@ angular.module('myContacts.contacts', ['ngRoute'])
     };
 
     $scope.editCar = function(car) {
-        console.log('Removing old car');
-        $scope.removeLogic($scope.editedCarName);
+        car.id = $scope.editedCarId;
         console.log(car);
         $http({method  : 'PUT',
             url     : 'http://localhost:8080/cars/updateCar',
