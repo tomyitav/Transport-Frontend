@@ -8,8 +8,9 @@ describe('myContacts.trains module', function() {
 
     it('should ....', inject(function($controller) {
       //spec body
-      var view1Ctrl = $controller('View1Ctrl');
-      expect(view1Ctrl).toBeDefined();
+      var trainCtrl = $controller('trainCtrl');
+      console.log('Hi tests!!!');
+      expect("Hello world").toContain("Rello");
     }));
 
   });
