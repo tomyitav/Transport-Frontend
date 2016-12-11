@@ -34,9 +34,6 @@ angular.module('myContacts.contacts', ['ngRoute'])
       $scope.editedCarName = car.name;
       $scope.editedCarId = car.id;
     }
-    // $scope.hideEditForm = function(){
-    //   $scope.editFormShow = false;
-    // }
 
     $scope.addNewCar = function(car) {
         console.log(car);

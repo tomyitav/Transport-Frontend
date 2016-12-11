@@ -18,13 +18,20 @@ module.exports = function (grunt) {
                     'app/app.min.js': ['app/app.js']
                 }
             }
+        },
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js',
+                singleRun : true
+            }
         }
     });
 
     //Load the plugin
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-karma');
     //Do the task
-    grunt.registerTask("default", ['cssmin', 'uglify']);
+    grunt.registerTask("default", ['cssmin', 'uglify', 'karma']);
 
 };

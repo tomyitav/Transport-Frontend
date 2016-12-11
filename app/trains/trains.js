@@ -47,11 +47,38 @@ angular.module('myContacts.trains', ['ngRoute'])
     $scope.addFormShow = false;
   };
 
+  $scope.editTrain = function(train) {
+    train.id = $scope.editedTrainId;
+    console.log(train);
+    $http({method  : 'PUT',
+      url     : 'http://localhost:8080/trains/updateTrain',
+      data    : train, //forms user object
+      headers : {'Content-Type': 'application/json'}
+    }).success(function() {
+      $scope.fetchTrainsList()
+      $scope.train.name = ''
+    }).error(function() {
+      // $scope.setError('Could not add a new car');
+      console.log("Error posting JSON")
+    });
+    $scope.editFormShow = false;
+  };
+
   $scope.showAddForm = function(){
     $scope.addFormShow = true;
   }
+
+  $scope.showEditForm = function(train){
+    $scope.editFormShow = true;
+    $scope.editedTrainName = train.name;
+    $scope.editedTrainSpeed = train.speed;
+    $scope.editedTrainDiesel = train.diesel;
+    $scope.editedTrainId = train.id;
+  }
+
   $scope.hideAddForm = function(){
     $scope.addFormShow = false;
+    $scope.editFormShow = false;
   }
   $scope.sendToSocket= function(){
     console.log('This is before sending to socket...');

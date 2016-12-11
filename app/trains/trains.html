@@ -18,7 +18,7 @@
                 <td>{{train.name}}</td>
                 <td>{{train.speed}}</td>
                 <td>{{train.diesel}}</td>
-                <td><a class="btn btn-success" ng-click="fetchTrainsList()">Edit</a>
+                <td><a class="btn btn-success" ng-click="showEditForm(train)">Edit</a>
                     <!--<a class="btn btn-danger" ng-click="removeTrain(train.id)">Delete</a></td>-->
                     <a class="btn btn-danger" title="Sure???" ng-click="removeTrain(train.id)" data-toggle="confirmation"
                        data-singleton="true" data-popout="true">Delete</a></td>
@@ -43,10 +43,27 @@
                     <input type="submit" value="Add" class="btn btn-info" ng-disabled="!train.name || !train.speed" ng-click="addNewTrain(train)"/>
                 </div>
             </form>
+            <form ng-show="editFormShow">
+                <h3>Edit train</h3>
+                <div class="form-group">
+                    <label>Name:
+                        <input type="text" ng-model="train.name" placeholder={{editedTrainName}} class="form-control"/>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>Speed:
+                        <input type="number" ng-model="train.speed" placeholder={{editedTrainSpeed}} class="form-control" name="speed"/>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" ng-model="train.diesel" id="dieselCheckBox">Diesel</label>
+                    <input type="submit" value="Edit" class="btn btn-info" ng-disabled="!train.name || !train.speed" placeholder={{editedTrainDiesel}} ng-click="editTrain(train)"/>
+                </div>
+            </form>
         </div>
     <div class="small-12 large-2 columns">
-        <a class="btn btn-primary" ng-click="showAddForm()" ng-hide="addFormShow">+</a>
-        <a class="btn btn-primary" ng-click="hideAddForm()" ng-show="addFormShow">-</a>
+        <a class="btn btn-primary" ng-click="showAddForm()" ng-hide="addFormShow || editFormShow">+</a>
+        <a class="btn btn-primary" ng-click="hideAddForm()" ng-show="addFormShow || editFormShow">-</a>
         <a class="btn btn-primary" ng-click="sendToSocket()">Send to socket</a>
     </div>
     </div>
