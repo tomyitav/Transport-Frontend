@@ -6,14 +6,20 @@ describe('myContacts.trains module', function() {
 
   describe('trains controller', function(){
 
-    it('should ....', inject(function($controller) {
+    it('should test train controller', inject(function($controller, $rootScope) {
       //spec body
-      var scope = {};
+      var scope = $rootScope.$new();
+      scope.addFormShow = false;
       var trainCtrl = $controller('trainCtrl', {
         $scope: scope
       });
       console.log('Hi tests!!!');
       expect("Hello world").toContain("Hello");
+      expect(scope.addFormShow).toBeDefined();
+      expect(scope.addFormShow).toEqual(false);
+      // //executing modifing function
+      scope.showAddForm();
+      expect(scope.addFormShow).toEqual(true);
     }));
 
   });
