@@ -17,7 +17,7 @@ describe('myContacts.trains module', function() {
       expect("Hello world").toContain("Hello");
       expect(scope.addFormShow).toBeDefined();
       expect(scope.addFormShow).toEqual(false);
-      // //executing modifing function
+      //executing modifing function
       scope.showAddForm();
       expect(scope.addFormShow).toEqual(true);
     }));
