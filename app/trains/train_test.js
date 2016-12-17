@@ -22,5 +22,22 @@ describe('myContacts.trains module', function() {
       expect(scope.addFormShow).toEqual(true);
     }));
 
+    it('should test train controller after first', inject(function($controller, $rootScope) {
+      //spec body
+      var scope = $rootScope.$new();
+      scope.editFormShow = false;
+      var trainCtrl = $controller('trainCtrl', {
+        $scope: scope
+      });
+      console.log('Hi test number 2!!!');
+      expect(scope.editFormShow).toBeDefined();
+      expect(scope.editFormShow).toEqual(false);
+      var trainForTest = {"name" : 'train',
+      "speed":100, "diesel" : true}
+      //executing modifing function
+      scope.showEditForm(trainForTest);
+      expect(scope.editFormShow).toEqual(true);
+    }));
+
   });
 });
