@@ -14,7 +14,6 @@ describe('myContacts.trains module', function() {
         $scope: scope
       });
       console.log('Hi tests!!!');
-      expect("Hello world").toContain("Hello");
       expect(scope.addFormShow).toBeDefined();
       expect(scope.addFormShow).toEqual(false);
       //executing modifing function
@@ -37,6 +36,24 @@ describe('myContacts.trains module', function() {
       //executing modifing function
       scope.showEditForm(trainForTest);
       expect(scope.editFormShow).toEqual(true);
+    }));
+
+    it('fetch train list', inject(function($controller, $rootScope, $httpBackend) {
+      //spec body
+      $httpBackend
+          .when('GET', 'http://localhost:8080/trains/trainslist.json')
+          .respond(200, [{"name" : 'train',
+            "speed":100, "diesel" : true}]);
+
+      var scope = $rootScope.$new();
+      var trainCtrl = $controller('trainCtrl', {
+        $scope: scope
+      });
+      $httpBackend.flush();
+
+      console.log('Hi test number 3!!!');
+      scope.fetchTrainsList();
+      expect(scope.trains[0].name).toEqual('train');
     }));
 
   });
