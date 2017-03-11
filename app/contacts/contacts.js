@@ -15,9 +15,16 @@ angular.module('myContacts.contacts', ['ngRoute'])
     $scope.car = {};
     // $scope.confirmedRemove = false;
     $scope.fetchCarsList = function() {
-        $http.get("http://localhost:8080/cars/carlist.json").success(function(carList){
-            console.log(carList)
-            $scope.cars = carList;
+        var query = {"query": "{car{name}}"}
+        $http({method  : 'POST',
+            url     : 'http://localhost:8080/graphql',
+            data    : query, //forms user object
+            headers : {'Content-Type': 'application/json'}
+        }).success(function(data) {
+            $scope.cars = data.data.car;
+        }).error(function() {
+            // $scope.setError('Could not add a new car');
+            console.log("Error posting JSON")
         });
     };
     // console.log($scope.contacts);
