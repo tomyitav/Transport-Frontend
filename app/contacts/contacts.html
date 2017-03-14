@@ -13,7 +13,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="car in cars">
-                <td><a href="#">{{car.id}}</a></td>
+                <td><a href="#">{{car._id}}</a></td>
                 <td>{{car.name}}</td>
                 <td><a class="btn btn-success" ng-click="showEditForm(car)" name={{car.name}}>Edit</a>
                     <a class="btn btn-danger" title="Sure???" ng-click="removeCar(car.name)" data-toggle="confirmation"

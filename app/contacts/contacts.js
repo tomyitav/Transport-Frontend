@@ -15,7 +15,7 @@ angular.module('myContacts.contacts', ['ngRoute'])
     $scope.car = {};
     // $scope.confirmedRemove = false;
     $scope.fetchCarsList = function() {
-        var query = {"query": "{car{name}}"}
+        var query = {"query": "{car{_id, name}}"}
         $http({method  : 'POST',
             url     : 'http://localhost:8080/graphql',
             data    : query, //forms user object
