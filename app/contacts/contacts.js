@@ -44,9 +44,11 @@ angular.module('myContacts.contacts', ['ngRoute'])
 
     $scope.addNewCar = function(car) {
         console.log(car);
+        var query = {"query" : 'mutation {updateCar(currName : "", newName: '+ '"'+car.name + '"'+ ') {name}}'};
+        console.log(query);
         $http({method  : 'POST',
-            url     : 'http://localhost:8080/cars/addCar',
-            data    : car, //forms user object
+            url     : 'http://localhost:8080/graphql',
+            data    : query, //forms user object
             headers : {'Content-Type': 'application/json'}
         }).success(function() {
             $scope.fetchCarsList();
